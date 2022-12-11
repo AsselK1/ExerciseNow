@@ -4,7 +4,7 @@ from .forms import VideoForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from exercise import views
-from 
+from counter import main
 import random
 def index(request):
 
@@ -42,21 +42,16 @@ def inference():
     last_video = Video.objects.last()
     video_file= last_video.videofile
     reqs = last_video.reqs
-    b = 0
-    a = 10
-    for i in range(1000000):
-        a = 1 + i
-        b += a - 100000 + a
     reqs = reqs.split()
     reqs = {'pushup': int(reqs[0]), 'situp': int(reqs[1]), 'pull ups': int(reqs[2]), 'squat': int(reqs[3])}
-    return ({'pushup': a, 'situp': b, 'pull ups': a, 'squat': b}, reqs)
+    return main(video_file, reqs)
 def challenge(request):
     if request.method == 'POST':
         form= VideoForm(request.POST, request.FILES or None)
         if form.is_valid():
             form.save()
             x = inference()
-            return finish(request, x[0], x[1])
+            return finish(request, x)
             # return render(request, '')
     exercises = [[["pushup", 10], ["situp", 10]], [["pull ups", 3], ["squat", 10]], [["squat", 15], ["pushup", 20]], [["situp", 15], ["pushup", 15]], [["situp", 5], ["squat", 5]]]
     exercises = exercises[random.randint(0, 4)]
@@ -109,20 +104,12 @@ def shop(request):
     }
     return render(request, 'shop.html', context=context)
 
-def finish(request, result, reqs):
-    success = True
-    if(result['pushup'] < reqs['pushup'] - 1):
-        success = False
-    elif(result['situp'] < reqs['situp'] - 1):
-        success = False
-    elif(result['pull ups'] < reqs['pull ups'] - 1):
-        success = False    
-    elif(result['squat'] < reqs['squat'] - 1):
-        success = False
+def finish(request, result):
+    success = result
+
     context={
         'success': success,
         'reps': result,
         'challenge_num': 9,
-        'reqs': reqs
     }
     return render(request, 'finish.html', context=context)

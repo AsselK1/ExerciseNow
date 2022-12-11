@@ -4,6 +4,7 @@ from .forms import VideoForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from exercise import views
+from 
 import random
 def index(request):
 

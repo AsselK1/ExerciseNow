@@ -13,3 +13,6 @@ Instructions:
 Dataset is available at this link: https://drive.google.com/drive/folders/1LhgpEIJPuut4CP6-g_bVFNlPBHbp08fk?usp=sharing. 
 
 Official link of the dataset: https://paperswithcode.com/dataset/infiniterep
+
+To test add dataset to the same folder as counter.py
+and run `python3 test.py`

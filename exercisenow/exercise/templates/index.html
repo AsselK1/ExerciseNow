@@ -1,23 +1,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
+{% load static %}
+<link rel="stylesheet" href='{% static "styles.css"%}'>
 <title>Upload Videos</title>
 </head>
 <body>
+<div class="header">
+    <a href="/profile" class="logo">
+        <img src='{% static "logo.png"%}' alt="" width="35px">
+        ExerciseNow
+    </a>
+    <div class="header-right">
+        <a class="button" href="/subscription">Subscription</a>
+        <a href="/shop" class="button">Shop</a>
+        <a href="/challenge" class="button">Get a Challenge</a>
+        <a href="/profile" class="logo"><img src='{% static "profile.png"%}' alt="profile" width="30px"></a>
+    </div>
+</div>
+<div class="challenge">
+    <div class="top">Challenge #{{ challenge_num }}</div>
+    <img src='{% static "pushup.gif"%}' alt="temporary issues" width="800px">
+    <form enctype="multipart/form-data" method="POST" action="" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Upload"/>
+    </form>
 
-<h1>Video Uploader</h1>
-<form enctype="multipart/form-data" method="POST" action="">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Upload"/>
-</form>
+</div>
 
-<br><br>
-<video width='400' height='400' controls>
-<source src='{{ MEDIA_URL }}{{ videofile }}' type='video/mp4'>
-Your browser does not support the video tag.
-</video>
-<br><br>
+
+<!-- <br><br> -->
+<!-- <video width='400' height='400' controls> -->
+<!-- <source src='{{ MEDIA_URL }}{{ videofile }}' type='video/mp4'> -->
+<!-- Your browser does not support the video tag. -->
+<!-- </video> -->
+<!-- <br><br> -->
 </p>
 
 </body>

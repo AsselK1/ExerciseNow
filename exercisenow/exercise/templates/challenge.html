@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta charset="UTF-8">
+{% load static %}
+<link rel="stylesheet" href='{% static "styles.css"%}'>
+<title>Upload Videos</title>
+</head>
+<body>
+<div class="header">
+    <a href="/profile" class="logo">
+        <img src='{% static "logo.png"%}' alt="" width="35px">
+        ExerciseNow
+    </a>
+    <div class="header-right">
+        <a class="button" href="/subscription">Subscription</a>
+        <a href="/shop" class="button">Shop</a>
+        <a href="/challenge" class="button">Get a Challenge</a>
+        <a href="/profile" class="logo"><img src='{% static "profile.png"%}' alt="profile" width="30px"></a>
+    </div>
+</div>
+<div class="challenge">
+    <div class="top">Challenge #{{ challenge_num }}</div>
+
+    {% for exercise in exercises %}
+    <div>
+        <div class="top"> {{exercise.0}} </div>
+    {% if exercise.0 == "pushup"%}
+        <img src='{% static "pushup.gif"%}' alt="temporary issues" width="800px">
+        <div class="top">Description: </div>
+        <div> 
+            Contract your abs and tighten your core by pulling your belly button toward your spine. 
+            Inhale as you slowly bend your elbows and lower yourself to the floor, until your elbows are at a 90-degree angle.
+            Exhale while contracting your chest muscles and pushing back up through your hands, returning to the start position.  </div>
+    {% endif %}
+    {% if exercise.0 == "situp"%}<img src={% static "situp.gif"%} width="800px">
+    <div class="top">Description: </div>
+    <div> 
+        Lie on your back with bent knees and your feet anchored.
+        Tuck your chin into your chest to lengthen the back of your neck.
+        Interlace your fingers at the base of your skull, cross your arms with your hands on opposite shoulders, or place your palms down alongside your body.
+        Exhale as you lift your upper body up toward your thighs.
+        Inhale as you slowly lower yourself back down to the floor. </div>{% endif %}
+    {% if exercise.0 == "pull ups"%}<img src='{% static "pull ups.gif"%}' alt="temporary issues" width="800px">
+    <div class="top">Description: </div>
+    <div>
+        Start by positioning yourself under the center of a pullup bar. Reach up and grip the bar with both hands, palms facing away from you. Your arms should be extended straight overhead.
+Wrap your fingers over the bar and your thumb under the bar so that it’s almost touching your fingertips.
+Make sure your hands are a little more than shoulder-width apart.
+Press your shoulders down.
+Bring your shoulder blades toward each other, as if you are trying to use them to squeeze a lemon.
+Lift your feet completely off the floor, crossing your ankles. This is called a “dead hang.”
+Lift your chest slightly and pull. Draw your elbows down to your body until your chin is above the bar.
+As you lower yourself back down, control your release to prevent injury.
+    </div>{% endif %}
+    {% if exercise.0 == "squat"%}<img src='{% static "squat.gif"%}' alt="temporary issues" width="800px">
+    <div class="top">Description: </div>
+    <div>1. Stand up with your feet shoulder-width apart.
+        2. Bend your knees, press your hips back and stop the movement once the hip joint is slightly lower than the knees.
+        3. Press your heels into the floor to return to the initial position.
+        4. Repeat until set is complete.
+    </div>
+    {% endif %}
+    <div class="top"> {{exercise.1}} repetitions</div>
+    {% endfor %}
+    <form enctype="multipart/form-data" method="POST" action="" class="form">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <p> Please submit 1 video that contains all of the exercises above completed in the order they are presented. (sorry for reqs, just input anything it does not matter, could not fix)</p>
+    <input type="submit" value="Upload"/>
+    <input type="hidden" name="reqs" value="{{reqs}}"/>
+    </form>
+
+</div>
+
+</body>
+</html>

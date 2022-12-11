@@ -23,8 +23,8 @@ urlpatterns = [
     path(r'admin/', admin.site.urls),
 ]
 urlpatterns += [
-    path('', RedirectView.as_view(url='main/', permanent=True)),
-    path('main/', include('exercise.urls')),
+    path('', RedirectView.as_view(url='profile/', permanent=True)),
+    path('', include('exercise.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

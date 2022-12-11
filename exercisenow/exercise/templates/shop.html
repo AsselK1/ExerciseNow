@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta charset="UTF-8">
+{% load static %}
+<link rel="stylesheet" href='{% static "styles.css"%}'>
+<link rel="stylesheet" href='{% static "shop.css"%}'>
+<title>Profile</title>
+</head>
+<body>
+    <div class="header">
+        <a href="/profile" class="logo">
+            <img src='{% static "logo.png"%}' alt="" width="35px">
+            ExerciseNow
+        </a>
+        <div class="header-right">
+            <a class="button" href="/subscription">Subscription</a>
+            <a href="/shop" class="button">Shop</a>
+            <a href="/challenge" class="button">Get a Challenge</a>
+            <a href="/profile" class="logo"><img src='{% static "profile.png"%}' alt="profile" width="30px"></a>
+        </div>
+    </div>
+
+    <div class="shop">
+        {% for item in items %}
+        <div class='item'>
+            <div class="background">
+                <img src='{% static item.link%}' width='150px' class="image">
+            </div>
+            <div class="cost">
+                {{item.cost}}
+                <img src="{% static 'coin.png'%} " width="14px">
+            </div>
+            <div class="name">
+                {{item.name}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

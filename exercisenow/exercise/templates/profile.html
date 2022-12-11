@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="UTF-8">
+{% load static %}
+<link rel="stylesheet" href='{% static "styles.css"%}'>
+<link rel="stylesheet" href='{% static "profile.css"%}'>
+<title>Profile</title>
+</head>
+<body>
+<div class="header">
+    <a href="/profile" class="logo">
+        <img src='{% static "logo.png"%}' alt="" width="35px">
+        ExerciseNow
+    </a>
+    <div class="header-right">
+        <a class="button" href="/subscription">Subscription</a>
+        <a href="/shop" class="button">Shop</a>
+        <a href="/challenge" class="button">Get a Challenge</a>
+        <a href="/profile" class="logo"><img src='{% static "profile.png"%}' alt="profile" width="30px"></a>
+    </div>
+</div>
+<div class="profile">
+    <div class="name">{{name}}'s Report</div>
+    <table class="calendar">
+        <tr>
+        <th> </th>
+        {% with 'M T W T F S S' as week%}
+        {% for day in week.split %}
+            <th>
+                {{day}}
+            </th>
+        {% endfor %}
+        {% endwith %}
+        </tr>
+        {% for week in calendar %}
+            <tr>
+                <td> Week </td>
+                {% for day in week %}
+                    <td class="cell">
+                        {% if day == 0 %} <img src="{% static 'grey.png'%}"> {% endif %}
+                        {% if day == 1 %} <img src="{% static 'green.png'%}"> {% endif %}
+                        {% if day == 2 %} <img src="{% static 'red.png'%}"> {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <img src="{% static 'bar.png'%}">
+    <div class="earnings"> This week you earned {{reward}}$ out of {{max_reward}}$</div>
+</div>
+
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpbh-mt'},{'server':'p3plmcpnl487010'},{'dcenter':'p3'},{'id':'8437534'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script></script></html>

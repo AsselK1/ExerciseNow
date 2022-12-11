@@ -1,0 +1,23 @@
+.profile .name {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 32px;
+}
+.profile {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.profile .calendar {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.profile .cell {
+    padding: 10px;
+}
+.profile .earnings {
+    text-align: center;
+    font-size: 32px;
+}

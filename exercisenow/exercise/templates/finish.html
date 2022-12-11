@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta charset="UTF-8">
+{% load static %}
+<link rel="stylesheet" href='{% static "styles.css"%}'>
+<link rel="stylesheet" href='{% static "challenge.css"%}'>
+
+<title>Upload Videos</title>
+</head>
+<body>
+<div class="header">
+    <a href="/profile" class="logo">
+        <img src='{% static "logo.png"%}' alt="" width="35px">
+        ExerciseNow
+    </a>
+    <div class="header-right">
+        <a class="button" href="/subscription">Subscription</a>
+        <a href="/shop" class="button">Shop</a>
+        <a href="/challenge" class="button">Get a Challenge</a>
+        <a href="/profile" class="logo"><img src='{% static "profile.png"%}' alt="profile" width="30px"></a>
+    </div>
+</div>
+<div class="challenge">
+    <div class="top">Challenge #{{ challenge_num }}</div>
+    {% if success %}<div class="green"> Congratulations! Challenge is complete. You did {{reps}} reps. You needed: {{reqs}}{% else %} <div class="red"> Please try again. Counted only {{reps}}{% endif %}
+    <div><a href="/challenge">Try another challenge</a></div>
+</div>
+</body>
+</html>
